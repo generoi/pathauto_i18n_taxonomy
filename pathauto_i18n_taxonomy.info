@@ -1,0 +1,10 @@
+name = Pathauto i18n taxonomy
+description = Creates taxonomy paths in enabled languages.
+dependencies[] = path
+dependencies[] = token
+dependencies[] = pathauto
+dependencies[] = i18n
+
+package = Multilingual
+core = 7.x
+
