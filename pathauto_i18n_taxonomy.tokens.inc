@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Builds placeholder replacement tokens for taxonomy terms and vocabularies.
@@ -9,7 +8,6 @@
  * Implements hook_token_info().
  */
 function pathauto_i18n_taxonomy_token_info() {
-
   // Taxonomy term related variables.
   $term['i18n-parents'] = array(
     'name' => t('Parents (localized)'),
@@ -35,13 +33,12 @@ function pathauto_i18n_taxonomy_tokens($type, $tokens, array $data = array(), ar
   if ($type == 'term' && !empty($data['term'])) {
     $term = $data['term'];
 
-    // Chained tokens
     // [term:i18n-parents:*] chained tokens.
     if ($parents_tokens = token_find_with_prefix($tokens, 'i18n-parents')) {
       if ($parents = token_taxonomy_term_load_all_parents($term->tid)) {
 
-        //translate terms to language
-        foreach($parents as $tid => $term) {
+        // Translate terms to language.
+        foreach ($parents as $tid => $term) {
           $term = taxonomy_term_load($tid);
           $translated_parents[$tid] = check_plain(i18n_taxonomy_term_name($term, $langcode));
         }
