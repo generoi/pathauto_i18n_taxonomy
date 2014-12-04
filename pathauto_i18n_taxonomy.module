@@ -24,8 +24,12 @@ function pathauto_i18n_taxonomy_pathauto_alias_alter(&$alias, array &$context) {
   if ($context['module'] != 'taxonomy_term' || $context['language'] != LANGUAGE_NONE) {
     return;
   }
-  // @see _pathauto_existing_alias_data
-  $source = $context['source'];
+  // Dont create duplicate entries.
+  $langcode = language_default('language');
+  if (_pathauto_i18n_taxonomy_alias_exists($alias, $context['source'], $langcode)) {
+    // Setting the alias to an empty string will exit the creation.
+    $alias = '';
+  }
 
   // Set the language to the default language as we rely on translated versions
   // existing.
