@@ -14,6 +14,10 @@
  * Implements hook_pathauto_alias_alter().
  */
 function pathauto_i18n_taxonomy_pathauto_alias_alter(&$alias, array &$context) {
+  if (empty($context['data']['term'])) {
+    return;
+  }
+
   $term = $context['data']['term'];
 
   // Only care about localized vocabularies
